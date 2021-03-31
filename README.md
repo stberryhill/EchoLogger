@@ -10,12 +10,13 @@
 EchoLogger uses the Autotools, providing a familiar way to install from source.
 
 First, run the bootstrap script to generate the autotools infrastructure:
-'''sh
+```sh
 ./bootstrap.sh
-'''
+```
 
 The rest is history:
+```sh
 ./configure
 make
 make install
-'''
+```
