@@ -23,12 +23,7 @@ AC_CHECK_HEADERS([stdio.h stdlib.h])
 AC_FUNC_MALLOC
 AC_CHECK_FUNCS([atexit])
 
-# Conditionals
-AM_CONDITIONAL([BUILD_EXAMPLES], [test "$BUILD_EXAMPLES" = yes])
-
 # Runs config.status in these makefiles to regenerate them from their templates if there are any changes.
 AC_CONFIG_FILES([Makefile
-                 src/Makefile
-                 tests/Makefile
-                 examples/Makefile])
+                 src/Makefile])
 AC_OUTPUT

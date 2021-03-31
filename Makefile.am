@@ -5,8 +5,4 @@ AUTOMAKE_OPTIONS = subdir-objects
 AM_LDFLAGS = -shared -O3
 ACLOCAL_AMFLAGS = -I m4
 
-if BUILD_EXAMPLES
-  optionalSubdirs = examples
-endif
-
-SUBDIRS = src tests $(optionalSubdirs)
+SUBDIRS = src
