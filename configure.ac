@@ -17,7 +17,7 @@ AM_PROG_AR
 LT_INIT([dlopen shared])
 
 # Checks for header files.
-AC_CHECK_HEADERS([stdio.h stdlib.h])
+AC_CHECK_HEADERS([stdio.h stdarg.h stdlib.h])
 
 # Checks for library functions.
 AC_FUNC_MALLOC
