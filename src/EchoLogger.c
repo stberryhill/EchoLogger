@@ -5,6 +5,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 EchoLogger *EchoLogger_Open(const char *fileName) {
   EchoLogger *logger = malloc(sizeof *logger);
@@ -26,6 +27,8 @@ uint32_t a() {
 uint8_t a() {
   
 }
+
+bool x() {}
 
 
 void EchoLogger_Info(const EchoLogger *logger, const char *message, ...) {
