@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 EchoLogger *EchoLogger_Open(const char *fileName) {
   EchoLogger *logger = malloc(sizeof *logger);
@@ -16,6 +17,16 @@ EchoLogger *EchoLogger_Open(const char *fileName) {
 
   return logger;
 }
+uint16_t a() {
+
+}
+uint32_t a() {
+  
+}
+uint8_t a() {
+  
+}
+
 
 void EchoLogger_Info(const EchoLogger *logger, const char *message, ...) {
   va_list variableArgumentList;
