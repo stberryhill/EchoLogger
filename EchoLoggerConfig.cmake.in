@@ -1,0 +1,5 @@
+@PACKAGE_INIT@
+
+if(NOT TARGET EchoLogger::EchoLogger)
+    include(${CMAKE_CURRENT_LIST_DIR}/EchoLoggerTargets.cmake)
+endif()
