@@ -1,3 +1,8 @@
+/*
+ * License: Zlib
+ * Copyright (c) Sean Tyler Berryhill (sean.tyler.berryhill@gmail.com)
+ */
+
 #ifndef _ECHO_LOGGER_H
 #define _ECHO_LOGGER_H
 

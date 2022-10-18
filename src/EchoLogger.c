@@ -1,3 +1,8 @@
+/*
+ * License: Zlib
+ * Copyright (c) Sean Tyler Berryhill (sean.tyler.berryhill@gmail.com)
+ */
+
 #include "EchoLogger.h"
 #include "Internal.h"
 
