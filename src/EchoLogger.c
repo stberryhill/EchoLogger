@@ -4,82 +4,89 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include <stdint.h>
-#include <stdbool.h>
 
-EchoLogger *EchoLogger_Open(const char *fileName) {
-  EchoLogger *logger = malloc(sizeof *logger);
+Logger *Logger_OpenFileLogger(const char *fileName, bool outputToTerminal) {
+  Logger *logger = malloc(sizeof *logger);
   logger->filePtr = fopen(fileName, "w");
 
   if (!logger->filePtr) {
-    printf("EchoLogger could not open file \"%s\" for logging.\n", fileName);
+    printf("(%s:%d) [Error] Logger could not open file \"%s\" for logging.\n", __FILE__, __LINE__, fileName);
     exit(-1);
   }
 
+  logger->outputToTerminal = outputToTerminal;
+
   return logger;
 }
-uint16_t a() {
 
-}
-uint32_t a() {
-  
-}
-uint8_t a() {
-  
+Logger *Logger_OpenConsoleLogger() {
+  Logger *logger = malloc(sizeof *logger);
+  logger->outputToTerminal = true;
+
+  return logger;
 }
 
-bool x() {}
-
-
-void EchoLogger_Info(const EchoLogger *logger, const char *message, ...) {
+void Logger_Info(const Logger *logger, const char *message, ...) {
   va_list variableArgumentList;
   va_start(variableArgumentList, message);
   
-  fprintf(logger->filePtr, "[Info] ");
-  vfprintf(logger->filePtr, message, variableArgumentList);
-  fprintf(logger->filePtr, "\n");
-  fflush(logger->filePtr);
+  if (logger->filePtr) {
+    fprintf(logger->filePtr, "[Info] ");
+    vfprintf(logger->filePtr, message, variableArgumentList);
+    fprintf(logger->filePtr, "\n");
+    fflush(logger->filePtr);
+  }
   
-  printf("[Info] ");
-  printf(message, variableArgumentList);
-  printf("\n");
+  if (logger->outputToTerminal) {
+    printf("[Info] ");
+    printf(message, variableArgumentList);
+    printf("\n");
+  }
 
   va_end(variableArgumentList);
 }
 
-void EchoLogger_Warn(const EchoLogger *logger, const char *message, ...) {
+void Logger_Warn(const Logger *logger, const char *message, ...) {
   va_list variableArgumentList;
   va_start(variableArgumentList, message);
   
-  fprintf(logger->filePtr, "[Warnning] ");
-  vfprintf(logger->filePtr, message, variableArgumentList);
-  fprintf(logger->filePtr, "\n");
-  fflush(logger->filePtr);
+  if (logger->filePtr) {
+    fprintf(logger->filePtr, "[Warning] ");
+    vfprintf(logger->filePtr, message, variableArgumentList);
+    fprintf(logger->filePtr, "\n");
+    fflush(logger->filePtr);
+  }
 
-  printf("[Warnning] ");
-  printf(message, variableArgumentList);
-  printf("\n");
+  if (logger->outputToTerminal) {
+    printf("[Warning] ");
+    printf(message, variableArgumentList);
+    printf("\n");
+  }
 
   va_end(variableArgumentList);
 }
 
-void EchoLogger_Error(const EchoLogger *logger, const char *message, ...) {
+void Logger_Error(const Logger *logger, const char *message, ...) {
   va_list variableArgumentList;
   va_start(variableArgumentList, message);
   
-  fprintf(logger->filePtr, "[Error] ");
-  vfprintf(logger->filePtr, message, variableArgumentList);
-  fprintf(logger->filePtr, "\n");
-  fflush(logger->filePtr);
+  if (logger) {
+    fprintf(logger->filePtr, "[Error] ");
+    vfprintf(logger->filePtr, message, variableArgumentList);
+    fprintf(logger->filePtr, "\n");
+    fflush(logger->filePtr);
+  }
 
-  printf("[Error] ");
-  printf(message, variableArgumentList);
-  printf("\n");
+  if (logger->outputToTerminal) {
+    printf("[Error] ");
+    printf(message, variableArgumentList);
+    printf("\n");
+  }
 
   va_end(variableArgumentList);
 }
 
-void EchoLogger_Close(EchoLogger *logger) {
+void Logger_Close(Logger *logger) {
   fclose(logger->filePtr);
   free(logger);
 }

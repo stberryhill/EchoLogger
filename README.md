@@ -1,22 +1,12 @@
-# EchoLogger
+# Echo Logger
+
 > Simple logger for C apps.
 
-* Written in Ansi-C
+* Written in C99
 * Logging calls use familiar printf syntax
 * Create as many loggers as you want
-* Ouput written to file and echoed to console
+* Ouput can written to file and/or echoed to terminal
 
-# Installation
-EchoLogger uses the Autotools, providing a familiar way to install from source.
+## Installation
 
-First, run the bootstrap script to generate the autotools infrastructure:
-```sh
-./bootstrap.sh
-```
-
-The rest is history:
-```sh
-./configure
-make
-make install
-```
+Echo Logger uses CMake, standard CMake installation.

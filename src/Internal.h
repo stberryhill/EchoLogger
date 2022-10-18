@@ -3,8 +3,9 @@
 
 #include <stdio.h>
 
-struct EchoLogger {
+struct Logger {
  FILE *filePtr;
+ bool outputToTerminal;
 };
 
 #endif
